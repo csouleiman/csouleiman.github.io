@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UR3e Shoe Inspection — Chahd Souleimani</title>
+<meta name="description" content="Autonomous shoe inspection on a UR3e: hand-eye calibration, depth-based localisation, visual servoing, MoveIt2 planning and U-Net defect detection.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav" id="nav"><div class="wrap">
+  <a class="logo" href="../index.html" aria-label="Chahd Souleimani, home">
+    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 27h12M9 27v-4l7-9 7 3"/><circle cx="16" cy="14" r="2.4"/><path d="M23 17l3-4m-3 4l4 1"/><path d="M26 4l.9 2.6L29.5 7.5l-2.6.9L26 11l-.9-2.6L22.5 7.5l2.6-.9z" fill="currentColor" stroke="none"/></svg>
+    <span>Chahd <b>Souleimani</b></span></a>
+  <ul>
+    <li><a href="../projects.html" class="active">Projects</a></li>
+    <li><a href="../index.html#experience">Experience</a></li>
+    <li><a href="../index.html#skills">Skills</a></li>
+    <li><a href="../index.html#education">Education</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+  <a class="cv" href="../media/cv.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span>CV</span></a>
+  <button class="icon-btn" id="theme" type="button" aria-label="Toggle dark mode">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</div></nav>
+
+<header class="page-head">
+  <div class="blueprint"></div>
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>/</span><a href="../projects.html">Projects</a><span>/</span><span>P3</span></div>
+    <h1>Autonomous shoe <span class="s">inspection</span> on a UR3e</h1>
+    <div class="org"><b>REMAIN-SUDOE</b> · Team lead · 2025 – 2026</div>
+    <dl class="metabar">
+      <div><dt>Role</dt><dd>Team lead</dd></div>
+      <div><dt>Team</dt><dd>8 people</dd></div>
+      <div><dt>Duration</dt><dd>2025 – 2026</dd></div>
+      <div><dt>Platform</dt><dd>UR3e + RealSense D435</dd></div>
+    </dl>
+  </div>
+</header>
+
+<main id="main"><div class="wrap">
+
+  <div class="chapter">
+    <div class="label"><span class="k">01</span><h2>Project description</h2></div>
+    <div class="content">
+      <p>For a cross-border remanufacturing initiative, I led an 8-person team that took a defect-inspection pipeline from Gazebo to a <strong>real UR3e</strong> with a wrist-mounted RealSense camera. The work covered calibration, perception, motion planning and deep-learning defect detection.</p>
+      <div class="duo-hero rv" style="margin-top:24px">
+        <figure>
+          <div class="media" style="aspect-ratio:3/4" data-src="../media/inspection/setup.jpg" data-alt="UR3e with RealSense camera above a shoe"></div>
+          <figcaption>UR3e with an eye-in-hand RealSense D435, a shoe under inspection and the ArUco calibration marker.</figcaption>
+        </figure>
+        <figure>
+          <div class="media contain" style="aspect-ratio:1280/1032" data-src="../media/inspection/viewpoints.jpg" data-alt="Four inspection viewpoints"></div>
+          <figcaption>Viewpoints captured live by the robot camera on real hardware (4 of 5 poses reached).</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="label"><span class="k">02</span><h2>Pipeline</h2></div>
+    <div class="content">
+      <div class="steps">
+        <div class="step rv"><div><h3>Hand-eye calibration</h3><p>Tsai-Lenz with an ArUco marker, for the camera-to-tool0 transform. A first attempt was rejected; I traced it to wrong marker parameters and fixed it.</p></div></div>
+        <div class="step rv"><div><h3>Shoe localisation</h3><p>A depth-based node: floor-plane estimation, object masking, contour filtering and 3D projection.</p></div></div>
+        <div class="step rv"><div><h3>Visual servoing</h3><p>A finite-state machine with P-control on the pixel error, to centre the shoe in the camera view.</p></div></div>
+        <div class="step rv"><div><h3>5-view inspection</h3><p>Viewpoints defined in a shoe-centric frame through TF2, reached with collision-aware MoveIt2 / RRT* planning, an attached camera-mount collision volume, retry-on-failure logic and velocity capped at 15%.</p></div></div>
+        <div class="step rv"><div><h3>Defect detection</h3><p>A two-stage CNN: U-Net segmentation to locate defects, then a classifier that labels each one as a hole or a scratch.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="label"><span class="k">03</span><h2>What I learned on the real robot</h2></div>
+    <div class="content">
+      <div class="block rv">
+        <ul class="list">
+          <li>The model weights would not load when moved from Windows to Linux, so I <strong>retrained the full model stack natively on Ubuntu</strong>.</li>
+          <li>The model validated cleanly on smartphone images, then I <strong>diagnosed a domain-shift gap</strong> on the robot's own camera. Perspective, lighting and unseen colours caused specific, reproducible failures, not random errors.</li>
+          <li>I delivered a <strong>roadmap to close the gap</strong>: augmenting the data with robot-camera captures, yaw-aligned viewpoints and hardware with more reach.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="label"><span class="k">04</span><h2>Gallery</h2></div>
+    <div class="content">
+      <div class="masonry rv">
+        <figure>
+          <div class="media" style="aspect-ratio:523/348" data-src="../media/inspection/segmentation.jpg" data-alt="U-Net defect overlay, side view"></div>
+          <figcaption>U-Net defect segmentation (blue) on a real shoe, captured on the UR3e.</figcaption>
+        </figure>
+        <figure>
+          <div class="media" style="aspect-ratio:1366/768" data-src="../media/inspection/calibration.jpg" data-alt="Hand-eye calibration"></div>
+          <figcaption>Hand-eye calibration with an ArUco marker (Tsai-Lenz).</figcaption>
+        </figure>
+        <figure>
+          <div class="media" style="aspect-ratio:497/370" data-src="../media/inspection/defect-front.jpg" data-alt="Defect overlay, front view"></div>
+          <figcaption>Front view: worn sole region flagged.</figcaption>
+        </figure>
+        <figure>
+          <div class="media" style="aspect-ratio:278/338" data-src="../media/inspection/defect-heel.jpg" data-alt="Defect overlay, heel"></div>
+          <figcaption>Heel close-up with the segmentation heat-map.</figcaption>
+        </figure>
+        <figure>
+          <div class="media contain" style="aspect-ratio:1200/1800" data-src="../media/inspection/node-graph.jpg" data-alt="ROS2 node pipeline"></div>
+          <figcaption>ROS2 node flow, from shoe pose to image-sequence output.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="label"><span class="k">05</span><h2>Tools</h2></div>
+    <div class="content">
+      <ul class="stack rv"><li>UR3e</li><li>RealSense D435</li><li>ROS2 Humble</li><li>MoveIt2</li><li>RRT*</li><li>TF2</li><li>PyTorch</li><li>U-Net</li><li>OpenCV</li><li>Gazebo</li></ul>
+    </div>
+  </div>
+
+  <section style="padding-block:24px 0">
+    <div class="next">
+      <a href="cable-manipulation.html"><small>← Previous folder</small><b>Dual-arm cable manipulation</b></a>
+      <a class="r" href="turtlebot-rl.html"><small>Next folder →</small><b>Teaching a TurtleBot3 to navigate with deep RL</b></a>
+    </div>
+  </section>
+</div></main>
+
+<footer><div class="wrap"><span>© 2026 Chahd Souleimani Houti Hassani · Clermont-Ferrand, France</span>
+  <nav><a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../index.html#contact">Contact</a></nav></div></footer>
+
+<script src="../assets/main.js"></script>
+</body>
+</html>

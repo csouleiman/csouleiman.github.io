@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chahd Souleimani — Robotics Portfolio</title>
+<meta name="description" content="Computer vision & robotics engineer: manipulation, perception and reinforcement learning, validated on real hardware.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav" id="nav"><div class="wrap">
+  <a class="logo" href="index.html" aria-label="Chahd Souleimani, home">
+    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 27h12M9 27v-4l7-9 7 3"/><circle cx="16" cy="14" r="2.4"/><path d="M23 17l3-4m-3 4l4 1"/><path d="M26 4l.9 2.6L29.5 7.5l-2.6.9L26 11l-.9-2.6L22.5 7.5l2.6-.9z" fill="currentColor" stroke="none"/></svg>
+    <span>Chahd <b>Souleimani</b></span></a>
+  <ul>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="cv" href="media/cv.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span>CV</span></a>
+  <button class="icon-btn" id="theme" type="button" aria-label="Toggle dark mode">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="blueprint"></div>
+  <!-- line-art robot arm, decorative -->
+  <svg class="arm-art" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M40 360h150" stroke-width="3"/><path d="M70 360v-14h80v14"/>
+    <circle cx="200" cy="120" r="150" stroke-dasharray="3 9" opacity=".7"/>
+    <g class="j1">
+      <rect x="92" y="300" width="36" height="46" rx="8"/><circle cx="110" cy="330" r="14"/><circle cx="110" cy="330" r="4" fill="currentColor"/>
+      <path d="M100 318L188 172M122 326L210 182"/>
+      <g class="j2">
+        <circle cx="200" cy="180" r="16"/><circle cx="200" cy="180" r="5" fill="currentColor"/>
+        <path d="M212 170L306 112M216 186L314 128"/>
+        <circle cx="318" cy="118" r="10"/>
+        <path d="M326 110l22-14M330 124l24 4M348 96l10 6M354 128l8-8"/>
+      </g>
+    </g>
+    <path d="M352 60l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" fill="currentColor" stroke="none" class="twinkle"/>
+    <path d="M60 90l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" fill="currentColor" stroke="none" class="twinkle d2"/>
+  </svg>
+
+  <div class="wrap">
+    <div>
+      <div class="status"><b></b>Open to a 5–6 month end-of-studies internship · flexible start</div>
+      <h1>I build robots that <span class="s">perceive</span>, <span class="s">control</span> &amp; <span class="s">learn</span>.</h1>
+      <p class="tagline">I'm <strong>Chahd Souleimani Houti Hassani</strong>, a computer vision and robotics engineering student at Sigma Clermont. I build complete pipelines, from camera to actuation, and <strong>validate them on physical hardware</strong>: Franka FR3, UR3e and TurtleBot3.</p>
+      <div class="ctas">
+        <a class="btn primary" href="#projects">Open the project folders
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+        <a class="btn" href="media/cv.pdf" target="_blank" rel="noopener">Download CV
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></a>
+      </div>
+    </div>
+    <div class="portrait">
+      <svg class="ring" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="rp" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs>
+        <text font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="2.6" fill="currentColor"><textPath href="#rp">PERCEIVE · CONTROL · LEARN · </textPath></text>
+        <path d="M60 50l2.6 7.4L70 60l-7.4 2.6L60 70l-2.6-7.4L50 60l7.4-2.6z" fill="currentColor"/></svg>
+      <div class="arch"><div class="media" data-src="media/portrait.jpg" data-alt="Portrait of Chahd Souleimani Houti Hassani"></div></div>
+      <div class="tag"><small>Currently</small>Final year at Sigma Clermont · REMAIN project</div>
+    </div>
+  </div>
+
+  <div class="wrap" style="display:block">
+    <div class="stats rv">
+      <div class="stat"><div class="n">85–99<span>%</span></div><p>shape-error reduction in closed-loop cable servoing</p></div>
+      <div class="stat"><div class="n">3</div><p>real robot platforms: Franka FR3, UR3e, TurtleBot3</p></div>
+      <div class="stat"><div class="n">&lt;20→60<span>%</span></div><p>navigation success with curriculum learning</p></div>
+      <div class="stat"><div class="n">8</div><p>engineers in the inspection team I led</p></div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<!-- ======================= PROJECTS ======================= -->
+<section id="projects"><div class="wrap">
+  <div class="sec-head rv">
+    <span class="mono"><span class="spark"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z" fill="currentColor"/></svg></span>01 / Projects</span>
+    <h2>Project <span class="s">folders</span></h2>
+    <a class="more" href="projects.html">All projects
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+
+  <div class="folders two">
+    <a class="folder rv" href="projects/force-measurement.html">
+      <span class="tab"><i></i>REMAIN · Pair project</span>
+      <div class="thumb"><img src="media/force/sim-3-pull.jpg" alt="Two UR3e arms in simulation peeling a shoe sole" loading="lazy"><span class="live">In progress</span><span class="num">P1</span></div>
+      <div class="body">
+        <span class="when">Oct 2026 – Feb 2027 · Sigma Clermont</span>
+        <h3>Automated robotic force measurement for recycled shoes</h3>
+        <span class="tags">Dual-arm UR3e · Force sensing · MoveIt2 · Dataset</span>
+        <span class="open">Open folder <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+    <a class="folder rv" href="projects/cable-manipulation.html">
+      <span class="tab"><i></i>Research internship</span>
+      <div class="thumb"><img src="media/dlo/hero.jpg" alt="Two Franka FR3 arms holding a cable" loading="lazy"><span class="num">P2</span></div>
+      <div class="body">
+        <span class="when">May – Sep 2026 · Institut Pascal</span>
+        <h3>Detecting singularities in dual-arm cable manipulation</h3>
+        <span class="tags">Shape servoing · Jacobian estimation · SVD · ROS2</span>
+        <span class="open">Open folder <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+    <a class="folder rv" href="projects/shoe-inspection.html">
+      <span class="tab"><i></i>Team lead</span>
+      <div class="thumb"><img src="media/inspection/setup.jpg" alt="UR3e with a RealSense camera above a shoe" loading="lazy" style="object-position:50% 40%"><span class="num">P3</span></div>
+      <div class="body">
+        <span class="when">2025 – 2026 · REMAIN-SUDOE</span>
+        <h3>Autonomous shoe inspection on a UR3e</h3>
+        <span class="tags">Computer vision · U-Net · MoveIt2 · Hand-eye calibration</span>
+        <span class="open">Open folder <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+    <a class="folder rv" href="projects/turtlebot-rl.html">
+      <span class="tab"><i></i>Team project</span>
+      <div class="thumb"><img src="media/rl/hero.jpg" alt="TurtleBot3 navigating in Gazebo" loading="lazy"><span class="num">P4</span></div>
+      <div class="body">
+        <span class="when">2025 – 2026 · Sigma Clermont</span>
+        <h3>Teaching a TurtleBot3 to navigate with deep RL</h3>
+        <span class="tags">PyTorch · DQN · Actor-Critic · Curriculum learning</span>
+        <span class="open">Open folder <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+  </div>
+</div></section>
+
+<!-- ======================= EXPERIENCE ======================= -->
+<section id="experience" style="padding-top:0"><div class="wrap">
+  <div class="sec-head rv">
+    <span class="mono"><span class="spark"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z" fill="currentColor"/></svg></span>02 / Experience</span>
+    <h2>Where I've <span class="s">worked</span></h2>
+    <p>Research, team-lead and project roles, each on real robot hardware.</p>
+  </div>
+  <div class="xp">
+    <div class="xp-item rv">
+      <span class="when">Oct 2026 – present</span>
+      <div><h3>Engineering project, robotic force measurement</h3><div class="where">REMAIN project · Sigma Clermont · pair project</div>
+        <p>Two UR3e arms that pull the sole off recycled shoes, measure the separation force and record a dataset for every pull.</p></div>
+      <a class="go" href="projects/force-measurement.html">Project P1 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="xp-item rv">
+      <span class="when">May – Sep 2026</span>
+      <div><h3>Research Intern</h3><div class="where">Institut Pascal · Clermont-Ferrand</div>
+        <p>Closed-loop shape servoing on a dual-arm Franka FR3 with a 15-camera OptiTrack system. Online deformation-Jacobian estimation and SVD diagnostics for singularity detection.</p></div>
+      <a class="go" href="projects/cable-manipulation.html">Project P2 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="xp-item rv">
+      <span class="when">2025 – 2026</span>
+      <div><h3>Team Lead, defect inspection</h3><div class="where">REMAIN-SUDOE project · Sigma Clermont</div>
+        <p>Led an 8-person team taking a perception-to-manipulation pipeline from Gazebo to a real UR3e with a RealSense D435.</p></div>
+      <a class="go" href="projects/shoe-inspection.html">Project P3 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div></section>
+
+<!-- ======================= SKILLS ======================= -->
+<section id="skills" style="padding-top:0"><div class="wrap">
+  <div class="sec-head rv">
+    <span class="mono"><span class="spark"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z" fill="currentColor"/></svg></span>03 / Toolkit</span>
+    <h2>Technical <span class="s">expertise</span></h2>
+    <p>Tools I have used on real hardware, not only in coursework.</p>
+  </div>
+  <div class="skills">
+    <div class="skill rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 20h7M7 20v-5l5-5 3 3"/><circle cx="12" cy="10" r="1.6"/><path d="M15 13l4-4-2-2"/></svg></div>
+      <h3>Robotics &amp; control</h3><ul><li>ROS2 Humble, MoveIt2, OMPL</li><li>Jacobian / shape-servoing control</li><li>Visual servoing</li><li>Real-time positioning &amp; tracking</li><li>Hand-eye calibration</li></ul></div>
+    <div class="skill rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div>
+      <h3>AI &amp; vision</h3><ul><li>PyTorch, OpenCV</li><li>CNN, U-Net segmentation</li><li>RL: PG, DQN, Actor-Critic</li><li>Imitation learning</li><li>Sim-to-real transfer</li></ul></div>
+    <div class="skill rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></div>
+      <h3>Software</h3><ul><li>Python, C++</li><li>MATLAB / Octave</li><li>Gazebo, RViz</li><li>Git</li><li>CATIA</li></ul></div>
+    <div class="skill rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg></div>
+      <h3>Hardware</h3><ul><li>Franka FR3 (dual-arm)</li><li>Universal Robots UR3e (dual-arm)</li><li>OnRobot 2FG7 gripper</li><li>TurtleBot3</li><li>Intel RealSense D435</li><li>OptiTrack (15 cameras)</li></ul></div>
+  </div>
+</div></section>
+
+<!-- ======================= EDUCATION ======================= -->
+<section id="education" style="padding-top:0"><div class="wrap">
+  <div class="sec-head rv">
+    <span class="mono"><span class="spark"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z" fill="currentColor"/></svg></span>04 / Background</span>
+    <h2>Education &amp; <span class="s">languages</span></h2>
+  </div>
+  <div class="bg-grid">
+    <div class="block rv">
+      <ul class="tl">
+        <li><span class="when">2024 – 2027</span><div><b>Master's in Mechanical Engineering</b><span>Sigma Clermont (INP), Innovation, Mechanisms &amp; Robotics</span>
+          <small>Currently in my final year. Robot kinematics &amp; dynamics · Reinforcement learning · Computer vision · Real-time systems · ROS2 · Machine &amp; deep learning. Expected graduation July 2027.</small></div></li>
+        <li><span class="when">2022 – 2024</span><div><b>CPGE MPSI / MP</b><span>Intensive preparatory classes, Morocco</span>
+          <small>Advanced mathematics, physics and numerical modelling.</small></div></li>
+        <li><span class="when">2021 – 2022</span><div><b>Baccalaureate, Mathematical Sciences</b><span>With honours</span></div></li>
+      </ul>
+    </div>
+    <div class="block rv">
+      <h4>Languages</h4>
+      <div class="langs">
+        <div class="lang"><span>English</span><div class="bar"><i style="width:90%"></i></div><small>Fluent</small></div>
+        <div class="lang"><span>French</span><div class="bar"><i style="width:90%"></i></div><small>Fluent</small></div>
+        <div class="lang"><span>Arabic</span><div class="bar"><i style="width:90%"></i></div><small>Fluent</small></div>
+        <div class="lang"><span>German</span><div class="bar"><i style="width:22%"></i></div><small>Beginner</small></div>
+      </div>
+      <h4 style="margin-top:28px">Working style</h4>
+      <p class="muted" style="margin:0">Autonomous and rigorous. I care about understanding <em>why</em> a robot fails, and I like turning a messy hardware result into a clear diagnosis.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ======================= CONTACT ======================= -->
+<section id="contact" style="padding-top:0"><div class="wrap">
+  <div class="contact rv">
+    <div>
+      <span class="mono" style="opacity:.7">05 / Contact</span>
+      <h2 style="margin-top:14px">Let's build <span class="s">intelligent</span> robots together.</h2>
+      <p>I'm looking for a 5–6 month end-of-studies internship in computer vision, manipulation or robot learning. My start date is flexible.</p>
+    </div>
+    <div class="links">
+      <button class="link" type="button" data-copy="chahd.souleimani_houti_hassani@sigma-clermont.fr"><span><small>Email · click to copy</small><span class="v">chahd.souleimani_houti_hassani@sigma-clermont.fr</span></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg></button>
+      <button class="link" type="button" data-copy="+33 7 58 91 01 65"><span><small>Phone · click to copy</small><span class="v">+33 7 58 91 01 65</span></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg></button>
+      <a class="link" href="media/cv.pdf" target="_blank" rel="noopener"><span><small>Résumé</small><span class="v">Download CV (PDF)</span></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></a>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Chahd Souleimani Houti Hassani · Clermont-Ferrand, France</span>
+  <nav><a href="projects.html">Projects</a><a href="#experience">Experience</a><a href="media/cv.pdf" target="_blank" rel="noopener">CV</a></nav></div></footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>

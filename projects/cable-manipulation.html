@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dual-arm Cable Manipulation — Chahd Souleimani</title>
+<meta name="description" content="Detecting singularities in dual-arm cable manipulation: closed-loop shape servoing on two Franka FR3 arms with online Jacobian estimation and SVD diagnostics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav" id="nav"><div class="wrap">
+  <a class="logo" href="../index.html" aria-label="Chahd Souleimani, home">
+    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 27h12M9 27v-4l7-9 7 3"/><circle cx="16" cy="14" r="2.4"/><path d="M23 17l3-4m-3 4l4 1"/><path d="M26 4l.9 2.6L29.5 7.5l-2.6.9L26 11l-.9-2.6L22.5 7.5l2.6-.9z" fill="currentColor" stroke="none"/></svg>
+    <span>Chahd <b>Souleimani</b></span></a>
+  <ul>
+    <li><a href="../projects.html" class="active">Projects</a></li>
+    <li><a href="../index.html#experience">Experience</a></li>
+    <li><a href="../index.html#skills">Skills</a></li>
+    <li><a href="../index.html#education">Education</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+  <a class="cv" href="../media/cv.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span>CV</span></a>
+  <button class="icon-btn" id="theme" type="button" aria-label="Toggle dark mode">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</div></nav>
+
+<header class="page-head">
+  <div class="blueprint"></div>
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>/</span><a href="../projects.html">Projects</a><span>/</span><span>P2</span></div>
+    <h1>Detecting singularities in dual-arm <span class="s">cable</span> manipulation</h1>
+    <div class="org"><b>Institut Pascal</b> · Research internship · 18 May – 18 September 2026</div>
+    <dl class="metabar">
+      <div><dt>Role</dt><dd>Research intern</dd></div>
+      <div><dt>Duration</dt><dd>May – Sep 2026 (4 months)</dd></div>
+      <div><dt>Platform</dt><dd>2× Franka FR3 + OptiTrack</dd></div>
+      <div><dt>Stack</dt><dd>ROS2 · Python</dd></div>
+    </dl>
+  </div>
+</header>
+
+<main id="main"><div class="wrap">
+
+  <div class="chapter">
+    <div class="label"><span class="k">01</span><h2>Project description</h2></div>
+    <div class="content">
+      <p>The shape of a cable or rod depends both on how the robot moves it and on the object's own mechanics. During my internship I studied whether the configurations where shape control breaks down can be <strong>detected directly from experimental data</strong>, without a model of the object.</p>
+      <figure class="rv" style="margin-top:24px">
+        <div class="media" data-src="../media/dlo/hero.mp4" data-badge="8× speed"></div>
+        <figcaption>Dual-arm closed-loop shape servoing with Broyden Jacobian updates. Both Franka FR3 arms drive the cable to its target shape, tracked by OptiTrack.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="label"><span class="k">02</span><h2>What I did</h2></div>
+    <div class="content">
+      <div class="steps">
+        <div class="step rv"><div><h3>Closed-loop shape-servoing pipeline</h3><p>Built on a dual-arm Franka FR3 platform, tracked by a 15-camera OptiTrack system and running on ROS2.</p></div></div>
+        <div class="step rv"><div><h3>Online deformation-Jacobian estimation</h3><p>Finite-difference least-squares regression, with optional Broyden rank-one updates between re-estimations.</p></div></div>
+        <div class="step rv"><div><h3>SVD diagnostics</h3><p>Singular values, rank and condition number, used to detect and classify each type of singularity.</p></div></div>
+        <div class="step rv"><div><h3>Open-loop stress experiments</h3><p>Slack, taut, symmetric deformation, buckling, snap-through and torsion, each designed to push the object towards one type of singularity.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="label"><span class="k">03</span><h2>Three ways control can fail</h2></div>
+    <div class="content">
+      <div class="block rv">
+        <div class="sing">
+          <div><b>Controllability</b><span>An actuation direction stops having an effect on the shape.</span></div>
+          <div><b>Observability</b><span>The object deforms, but the chosen features don't register it.</span></div>
+          <div><b>Mechanical</b><span>Buckling or snap-through moves the object to a new equilibrium.</span></div>
+        </div>
+        <p class="callout">Key finding: <strong>rank alone is a poor early warning</strong>. The Jacobian can stay full rank while controllability is already almost lost.</p>
+      </div>
+
+      <div class="explorer rv" id="explorer" style="margin-top:20px">
+        <div class="explorer-head">
+          <h4>Experiment explorer</h4>
+          <span class="mono muted">Real robot footage · logged diagnostics</span>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Experiments">
+          <button role="tab" aria-selected="true" aria-controls="x-broyden" style="--c:var(--ok)"><i></i>Closed loop</button>
+          <button role="tab" aria-selected="false" aria-controls="x-slack" style="--c:#E0367F"><i></i>Slack cable</button>
+          <button role="tab" aria-selected="false" aria-controls="x-taut" style="--c:#E0367F"><i></i>Taut cable</button>
+          <button role="tab" aria-selected="false" aria-controls="x-symdef" style="--c:#7B5CF5"><i></i>Symmetric deformation</button>
+          <button role="tab" aria-selected="false" aria-controls="x-buckling" style="--c:#D97706"><i></i>Buckling</button>
+          <button role="tab" aria-selected="false" aria-controls="x-snap" style="--c:#D97706"><i></i>Snap-through</button>
+          <button role="tab" aria-selected="false" aria-controls="x-torsion" style="--c:#E0367F"><i></i>Torsion</button>
+        </div>
+        <div class="panel" role="tabpanel" id="x-broyden">
+          <div class="media dark" data-src="../media/dlo/hero.mp4" data-badge="8× speed"></div>
+          <div class="media contain" data-src="../media/dlo/exp/broyden.png" data-alt="Closed-loop shape servoing diagnostics"></div>
+          <div class="info" style="--c:var(--ok)"><span class="cat">Baseline</span><p>Both arms in closed loop with Broyden updates. The tracking error <strong>converges to near zero</strong> and the Jacobian rank stays full throughout. This is the reference behaviour the singular cases are compared against.</p></div>
+        </div>
+        <div class="panel" role="tabpanel" id="x-slack" hidden>
+          <div class="media dark" data-src="../media/dlo/exp/slack.mp4" data-badge="Real time"></div>
+          <div class="media contain" data-src="../media/dlo/exp/slack.png" data-alt="Slack cable diagnostics"></div>
+          <div class="info" style="--c:#E0367F"><span class="cat">Controllability</span><p>Pushing the cable ends together until it goes slack. The smallest singular value <strong>collapses by more than an order of magnitude</strong> (≈0.9 → 0.03) while the rank stays at 3, so rank checks alone would miss it.</p></div>
+        </div>
+        <div class="panel" role="tabpanel" id="x-taut" hidden>
+          <div class="media dark" data-src="../media/dlo/exp/taut.mp4" data-badge="Real time"></div>
+          <div class="media contain dark" data-src="../media/dlo/exp/taut.png" data-alt="Taut cable taxonomy card"></div>
+          <div class="info" style="--c:#E0367F"><span class="cat">Controllability</span><p>Pulling the cable taut. As it straightens, σ<sub>min</sub> falls to <strong>~5% of its plateau value</strong> and the reachable shape-change volume shrinks. The driver's auto-stop fires on this signal. Shown here with the automatic singularity-taxonomy card.</p></div>
+        </div>
+        <div class="panel" role="tabpanel" id="x-symdef" hidden>
+          <div class="media dark" data-src="../media/dlo/exp/symdef.mp4" data-badge="Real time"></div>
+          <div class="media contain" data-src="../media/dlo/exp/symdef.png" data-alt="Symmetric deformation diagnostics"></div>
+          <div class="info" style="--c:#7B5CF5"><span class="cat">Observability</span><p>Moving both grippers symmetrically. <strong>≈81% of the real rod-orientation change is invisible</strong> to the point features, so the rank briefly drops. This is an observability failure, distinct from a controllability one.</p></div>
+        </div>
+        <div class="panel" role="tabpanel" id="x-buckling" hidden>
+          <div class="media dark" data-src="../media/dlo/exp/buckling.mp4" data-badge="Real time"></div>
+          <div class="media contain" data-src="../media/dlo/exp/buckling.png" data-alt="Buckling diagnostics"></div>
+          <div class="info" style="--c:#D97706"><span class="cat">Mechanical</span><p>Compressing the rod until it buckles. <strong>Two of the three singular values collapse sharply</strong> at the transition, as the local Jacobian model breaks down when the rod jumps to a new equilibrium.</p></div>
+        </div>
+        <div class="panel" role="tabpanel" id="x-snap" hidden>
+          <div class="media dark" data-src="../media/dlo/exp/snapthrough.mp4" data-badge="Real time"></div>
+          <div class="media contain" data-src="../media/dlo/exp/snapthrough.png" data-alt="Snap-through diagnostics"></div>
+          <div class="info" style="--c:#D97706"><span class="cat">Mechanical</span><p>Rotating one gripper until the rod snaps through. The rank <strong>drops from 3 to 2 at the snap and stays there</strong>, and the features jump in a single step.</p></div>
+        </div>
+        <div class="panel" role="tabpanel" id="x-torsion" hidden>
+          <div class="media dark" data-src="../media/dlo/exp/torsion.mp4" data-badge="Real time"></div>
+          <div class="media contain" data-src="../media/dlo/exp/torsion.png" data-alt="Torsion diagnostics"></div>
+          <div class="info" style="--c:#E0367F"><span class="cat">Rank loss</span><p>Twisting both grippers about the vertical axis. The singular values step down as the twist builds, and the <strong>Jacobian loses a rank (6 → 5)</strong> late in the motion.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="label"><span class="k">04</span><h2>Results</h2></div>
+    <div class="content">
+      <div class="results rv">
+        <div class="res"><div class="n">85–99%</div><p>shape-error reduction across 8 closed-loop hardware runs (single and dual arm, fixed and Broyden updates)</p></div>
+        <div class="res"><div class="n">0.9 → 0.03</div><p>collapse of the smallest singular value in the slack-cable test, while the Jacobian stayed full rank</p></div>
+        <div class="res"><div class="n">≈81%</div><p>of the rod-orientation change caused by the grippers went unseen by the chosen features</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="label"><span class="k">05</span><h2>Gallery</h2></div>
+    <div class="content">
+      <div class="masonry rv">
+        <figure>
+          <div class="media" style="aspect-ratio:1800/609" data-src="../media/dlo/platform.jpg" data-alt="Annotated experimental platform"></div>
+          <figcaption>The experimental cell: two FR3 arms (NS1, NS2), the OptiTrack system and the Linux and Windows control PCs.</figcaption>
+        </figure>
+        <figure>
+          <div class="media contain" style="aspect-ratio:1536/1024" data-src="../media/dlo/scheme.png" data-alt="Closed-loop shape servoing scheme"></div>
+          <figcaption>Closed-loop scheme: shape error → controller → robots → motion capture → Jacobian update.</figcaption>
+        </figure>
+        <figure>
+          <div class="media" style="aspect-ratio:1800/668" data-src="../media/dlo/features.jpg" data-alt="Marker features on the cable"></div>
+          <figcaption>Feature vector <code>s = [x₁, y₁, x₂, y₂, x₃, y₃]</code> built from three rigid-body markers on the cable.</figcaption>
+        </figure>
+        <figure>
+          <div class="media contain" style="aspect-ratio:1600/960" data-src="../media/dlo/sigma-compare.png" data-alt="Sigma min across runs"></div>
+          <figcaption>σ<sub>min</sub> across runs: it collapses in the taut runs and behaves differently when the cable is slack.</figcaption>
+        </figure>
+        <figure>
+          <div class="media" style="aspect-ratio:1320/707" data-src="../media/dlo/cable.jpg" data-alt="Cable sample with markers"></div>
+          <figcaption>Test objects: a cable and a foam rod, each fitted with 3D-printed marker plates.</figcaption>
+        </figure>
+        <figure>
+          <div class="media" style="aspect-ratio:1320/714" data-src="../media/dlo/rod.jpg" data-alt="Foam rod sample with markers"></div>
+        </figure>
+        <figure>
+          <div class="media contain" style="aspect-ratio:1800/1272" data-src="../media/dlo/runs-overview.png" data-alt="Overview of closed-loop runs"></div>
+          <figcaption>Tracking error and conditioning across the closed-loop validation runs.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="label"><span class="k">06</span><h2>Tools</h2></div>
+    <div class="content">
+      <ul class="stack rv"><li>ROS2</li><li>Franka FR3</li><li>OptiTrack</li><li>Python</li><li>Jacobian estimation</li><li>Broyden update</li><li>SVD</li><li>Shape servoing</li></ul>
+    </div>
+  </div>
+
+  <section style="padding-block:24px 0">
+    <div class="next">
+      <a href="force-measurement.html"><small>← Previous folder</small><b>Robotic force measurement for recycled shoes</b></a>
+      <a class="r" href="shoe-inspection.html"><small>Next folder →</small><b>Autonomous shoe inspection on a UR3e</b></a>
+    </div>
+  </section>
+</div></main>
+
+<footer><div class="wrap"><span>© 2026 Chahd Souleimani Houti Hassani · Clermont-Ferrand, France</span>
+  <nav><a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../index.html#contact">Contact</a></nav></div></footer>
+
+<script src="../assets/main.js"></script>
+</body>
+</html>

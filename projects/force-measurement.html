@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Robotic Force Measurement — Chahd Souleimani</title>
+<meta name="description" content="Automated dual-arm UR3e system that measures the force needed to separate the sole from the upper of recycled shoes, and records a dataset for every pull.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav" id="nav"><div class="wrap">
+  <a class="logo" href="../index.html" aria-label="Chahd Souleimani, home">
+    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 27h12M9 27v-4l7-9 7 3"/><circle cx="16" cy="14" r="2.4"/><path d="M23 17l3-4m-3 4l4 1"/><path d="M26 4l.9 2.6L29.5 7.5l-2.6.9L26 11l-.9-2.6L22.5 7.5l2.6-.9z" fill="currentColor" stroke="none"/></svg>
+    <span>Chahd <b>Souleimani</b></span></a>
+  <ul>
+    <li><a href="../projects.html" class="active">Projects</a></li>
+    <li><a href="../index.html#experience">Experience</a></li>
+    <li><a href="../index.html#skills">Skills</a></li>
+    <li><a href="../index.html#education">Education</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+  <a class="cv" href="../media/cv.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span>CV</span></a>
+  <button class="icon-btn" id="theme" type="button" aria-label="Toggle dark mode">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</div></nav>
+
+<header class="page-head">
+  <div class="blueprint"></div>
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>/</span><a href="../projects.html">Projects</a><span>/</span><span>P1</span></div>
+    <h1>Automated robotic <span class="s">force measurement</span> for recycled shoes</h1>
+    <div class="org"><b>REMAIN project</b> · Sigma Clermont · Oct 2026 – Feb 2027 <span class="live">In progress</span></div>
+    <dl class="metabar">
+      <div><dt>Team</dt><dd>Pair project, with Farah Ben Slimene</dd></div>
+      <div><dt>Duration</dt><dd>Oct 2026 – Feb 2027</dd></div>
+      <div><dt>Platform</dt><dd>2× UR3e · OnRobot 2FG7 · RealSense</dd></div>
+      <div><dt>Stack</dt><dd>ROS2 · MoveIt2 · Python</dd></div>
+    </dl>
+  </div>
+</header>
+
+<main id="main"><div class="wrap">
+
+  <div class="chapter">
+    <div class="label"><span class="k">01</span><h2>Project description</h2></div>
+    <div class="content">
+      <p>Taking post-consumer shoes apart by hand is <em>“technically difficult and time consuming”</em> (Lee &amp; Rahimifard, 2012), which is one reason so few shoes get recycled. Before a robot can separate a shoe, we need to know <strong>how much force it takes and how the shoe actually comes apart</strong>.</p>
+      <p>Our system uses <strong>two UR3e arms</strong> to pull the sole away from the upper, measures the force needed, and records a dataset of motions, forces and torques for every pull.</p>
+      <figure class="rv" style="margin-top:24px">
+        <div class="media dark" style="aspect-ratio:870/505" data-src="../media/force/sim-3-pull.jpg" data-alt="Two UR3e arms in simulation: one holds the shoe, the other peels the sole"></div>
+        <figcaption>Simulated two-arm cell: UR1 holds the shoe, UR2 peels the sole down from the toe. The force shown comes from a synthetic peel model used to test the pipeline.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="label"><span class="k">02</span><h2>What the research says</h2></div>
+    <div class="content">
+      <div class="case-body">
+        <div class="block rv">
+          <h4>There is no single “separation force”</h4>
+          <ul class="list">
+            <li><strong>ISO 17708</strong>, the factory test for sole bonding, separates three ways a pull can end: the <strong>glue lets go</strong>, the <strong>sole splits</strong>, or the <strong>material tears</strong>. We label every trial with this taxonomy.</li>
+            <li>The force depends on the <strong>pull speed and the conditions</strong>, so we vary the speed from trial to trial.</li>
+          </ul>
+        </div>
+        <div class="block rv">
+          <h4>Fix one arm, pull with the other</h4>
+          <ul class="list">
+            <li>Sako et al. (2025) used a dual-arm <strong>“fix-and-disassemble”</strong> strategy: one arm grasps and locks the object, the other pulls.</li>
+            <li>With fixation the object moved less, and success rose to <strong>100% against 80%</strong> for the baseline. Our holder / puller split follows the same idea.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="refs">Sources: Lee &amp; Rahimifard, <em>Resources, Conservation and Recycling</em>, 2012 · ISO 17708:2018 · arXiv:2107.09367 · Sako et al., 2025.</p>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="label"><span class="k">03</span><h2>System design</h2></div>
+    <div class="content">
+      <div class="case-body">
+        <div class="block rv">
+          <h4>UR1 · the holder <span class="mono">shoe tree</span></h4>
+          <ul class="list">
+            <li>An adjustable <strong>3D-printed shoe tree</strong> customised to our shoe. It goes inside the shoe and spreads to hold it.</li>
+            <li>A <strong>mount for the UR3e flange</strong> (ISO 9409-1-50-4-M6), a stem through the shoe collar, and a clamp on the shoe tree's rail.</li>
+            <li>The spring is replaced by a <strong>fixed spacer</strong>, so the shoe cannot move while it is pulled.</li>
+          </ul>
+        </div>
+        <div class="block rv">
+          <h4>UR2 · the puller <span class="mono">OnRobot 2FG7</span></h4>
+          <ul class="list">
+            <li>The gripper <strong>grips the sole edge at the toe</strong>, with a fixed pre-opening.</li>
+            <li>It pulls in a <strong>straight line at constant speed</strong> while the force at the wrist is recorded.</li>
+          </ul>
+        </div>
+      </div>
+      <figure class="rv" style="margin-top:18px">
+        <div class="media contain" style="aspect-ratio:1800/1080" data-src="../media/force/holder-design.png" data-alt="Shoe-holder design: flange disc, stem, rail clamp and length lock"></div>
+        <figcaption>Holder concept: (1) flange disc for the UR1 wrist, (2) stem through the shoe collar, (3) clamp on the shoe-tree rail, (4) length locked with a fixed spacer. UR2 peels the sole down at the toe.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="label"><span class="k">04</span><h2>Peel simulation</h2></div>
+    <div class="content">
+      <p>The full sequence runs in a simulated two-arm cell (ROS2, MoveIt2, simulated hardware and cameras) before it goes on the real robots.</p>
+      <div class="sim rv">
+        <figure><div class="media dark" style="aspect-ratio:870/505" data-src="../media/force/sim-1-present.jpg" data-alt="UR1 presents the shoe"></div><figcaption>UR1 presents the shoe</figcaption></figure>
+        <figure><div class="media dark" style="aspect-ratio:870/505" data-src="../media/force/sim-2-approach.jpg" data-alt="UR2 goes to the toe gap"></div><figcaption>UR2 goes to the toe gap</figcaption></figure>
+        <figure><div class="media dark" style="aspect-ratio:870/505" data-src="../media/force/sim-3-pull.jpg" data-alt="Grip and linear pull down"></div><figcaption>Grip and linear pull down</figcaption></figure>
+        <figure><div class="media dark" style="aspect-ratio:870/505" data-src="../media/force/sim-4-separated.jpg" data-alt="Sole separated"></div><figcaption>Sole separated</figcaption></figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="label"><span class="k">05</span><h2>The dataset</h2></div>
+    <div class="content">
+      <div class="case-body">
+        <div class="block rv">
+          <h4>Every 10 ms</h4>
+          <ul class="list"><li>Pull force at the wrist</li><li>Gripper position along the pull</li><li>Time</li></ul>
+          <h4 style="margin-top:22px">Once per trial</h4>
+          <ul class="list"><li>Sole separated or not, and how (ISO 17708 failure mode)</li><li>Peak force (N)</li><li>Distance to separation</li></ul>
+        </div>
+        <div class="block rv">
+          <h4>One row per trial</h4>
+          <div class="tbl-wrap"><table>
+            <tr><th>Field</th><th>Example</th></tr>
+            <tr><td>Grasp point</td><td>Sole edge at the toe</td></tr>
+            <tr><td>Pull angle</td><td>Straight down</td></tr>
+            <tr><td>Speed</td><td>Varied between trials</td></tr>
+            <tr><td>Peak force</td><td>N, from the wrist sensor</td></tr>
+            <tr><td>Distance</td><td>mm until separation</td></tr>
+            <tr><td>Outcome</td><td>Separated · failure mode</td></tr>
+          </table></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="label"><span class="k">06</span><h2>Progress</h2></div>
+    <div class="content">
+      <ul class="roadmap rv">
+        <li class="done"><span class="when">30 Oct – 18 Nov</span><div><b>Simulation pipeline + first real-arm tests</b></div><span class="st">Done</span></li>
+        <li class="now"><span class="when">16 – 29 Nov</span><div><b>Shoe insert: model, design &amp; print</b></div><span class="st">In progress</span></li>
+        <li class="next"><span class="when">1 – 27 Dec</span><div><b>Real tests + datasets</b></div><span class="st">Next</span></li>
+        <li class="next"><span class="when">Jan 2027</span><div><b>Imitation learning + perception layer</b></div><span class="st">Planned</span></li>
+        <li class="next"><span class="when">Feb 2027</span><div><b>Final results + dataset analysis</b></div><span class="st">Planned</span></li>
+      </ul>
+      <div class="milestones rv">
+        <div><small>02 Nov</small><p>Simulated shoe insertion of 9 pulls; logger and detector</p></div>
+        <div><small>05 Nov</small><p>First real-arm sessions; sensor characterised</p></div>
+        <div><small>09 Nov</small><p>Two-arm cell in MoveIt; camera calibration</p></div>
+        <div><small>18 Nov</small><p>Peel method with the shoe insert, simulated</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="label"><span class="k">07</span><h2>Tools</h2></div>
+    <div class="content">
+      <ul class="stack rv"><li>UR3e ×2</li><li>OnRobot 2FG7</li><li>RealSense</li><li>ROS2 Humble</li><li>MoveIt2</li><li>Python</li><li>Hand-eye calibration</li><li>3D printing</li><li>ISO 17708</li></ul>
+    </div>
+  </div>
+
+  <section style="padding-block:24px 0">
+    <div class="next">
+      <a href="../projects.html"><small>← Back</small><b>All projects</b></a>
+      <a class="r" href="cable-manipulation.html"><small>Next folder →</small><b>Dual-arm cable manipulation</b></a>
+    </div>
+  </section>
+</div></main>
+
+<footer><div class="wrap"><span>© 2026 Chahd Souleimani Houti Hassani · Clermont-Ferrand, France</span>
+  <nav><a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../index.html#contact">Contact</a></nav></div></footer>
+
+<script src="../assets/main.js"></script>
+</body>
+</html>
